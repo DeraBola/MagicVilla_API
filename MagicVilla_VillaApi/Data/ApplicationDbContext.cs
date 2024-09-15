@@ -23,7 +23,8 @@ namespace MagicVilla_VillaApi.Data
 					ImageUrl = "https://th.bing.com/th/id/OIP.87rC-vQdkf1I5qv74_2LjwHaHp?rs=1&pid=ImgDetMain",
 					Rate = 200,
 					Sqft = 550,
-					Amenity = ""
+					Amenity = "",
+					CreatedDate= DateTime.Now
 				},
 	new Villa
 	{
@@ -33,7 +34,8 @@ namespace MagicVilla_VillaApi.Data
 		ImageUrl = "https://th.bing.com/th/id/R.1a616d03469304f3ee855e44e1037918?rik=pFgQjXyVUHRqoA&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2f3%2f38%2fFlower_July_2011-2_1_cropped.jpg&ehk=I18Ym0u7Qb7y5%2bz5oa87N%2bbaWjnVGYuMrN6djhH6O9I%3d&risl=&pid=ImgRaw&r=0",
 		Rate = 300,
 		Sqft = 750,
-		Amenity = "Private pool, Jacuzzi"
+		Amenity = "Private pool, Jacuzzi",
+		CreatedDate = DateTime.Now
 	},
 	new Villa
 	{
@@ -43,7 +45,8 @@ namespace MagicVilla_VillaApi.Data
 		ImageUrl = "https://th.bing.com/th/id/OIP.Vtxy0FjT_EfudI4cQk1kzAHaE8?rs=1&pid=ImgDetMain",
 		Rate = 350,
 		Sqft = 850,
-		Amenity = "Ocean view, Private beach"
+		Amenity = "Ocean view, Private beach",
+		CreatedDate = DateTime.Now
 	},
 	new Villa
 	{
@@ -53,7 +56,8 @@ namespace MagicVilla_VillaApi.Data
 		ImageUrl = "https://th.bing.com/th/id/R.1a616d03469304f3ee855e44e1037918?rik=pFgQjXyVUHRqoA&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2f3%2f38%2fFlower_July_2011-2_1_cropped.jpg&ehk=I18Ym0u7Qb7y5%2bz5oa87N%2bbaWjnVGYuMrN6djhH6O9I%3d&risl=&pid=ImgRaw&r=0",
 		Rate = 400,
 		Sqft = 950,
-		Amenity = "Mountain view, Fireplace"
+		Amenity = "Mountain view, Fireplace",
+		CreatedDate = DateTime.Now
 	}
 				);
 		}
