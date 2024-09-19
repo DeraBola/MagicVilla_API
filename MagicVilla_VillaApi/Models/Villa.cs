@@ -18,5 +18,11 @@ namespace MagicVilla_VillaApi.Models
 		public string Amenity { get; set; }
 		public DateTime CreatedDate { get; set; }
 		public DateTime UpdatedDate { get; set; }
+
+		public Villa()
+		{
+			CreatedDate = DateTime.Now;
+			UpdatedDate = DateTime.Now;
+		}
 	} 
 }

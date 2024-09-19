@@ -180,6 +180,9 @@ namespace MagicVilla_VillaApi.Controllers
 				villa.Amenity = villaUpdateDTO.Amenity;
 			}
 
+			// Update the UpdatedDate to the current time
+			villa.UpdatedDate = DateTime.Now;
+
 			_db.Villas.Update(villa);
 			_db.SaveChanges();
 
