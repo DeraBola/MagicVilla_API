@@ -129,61 +129,63 @@ namespace MagicVilla_VillaApi.Controllers
 			return NoContent();
 		}
 
-		
+
 		[HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
-		public IActionResult UpdatePartialVilla(int id, JsonPatchDocument<VillaDTO> patchDTO)
+		public IActionResult UpdatePartialVilla(int id, [FromBody] VillaUpdateDTO villaUpdateDTO)
 		{
-			if (patchDTO == null || id == 0)
+			if (id == 0 || villaUpdateDTO == null)
 			{
 				return BadRequest();
 			}
 
-			// Get the villa entity from the database
 			var villa = _db.Villas.FirstOrDefault(u => u.Id == id);
-
-			// Null check for villa after retrieval
 			if (villa == null)
 			{
-				return NotFound(); // Return 404 if the villa is not found
+				return NotFound();
 			}
 
-			// Map the villa to VillaDTO
-			VillaDTO villaDTO = new()
+			// Manually update only the non-null fields
+			if (!string.IsNullOrWhiteSpace(villaUpdateDTO.Name))
 			{
-				Name = villa.Name,
-				Amenity = villa.Amenity,
-				Sqft = villa.Sqft,
-				Occupancy = villa.Occupancy,
-				Details = villa.Details,
-				Id = villa.Id,
-				Rate = villa.Rate,
-				ImageUrl = villa.ImageUrl,
-			};
-
-			// Apply the JSON Patch to the VillaDTO
-			patchDTO.ApplyTo(villaDTO, ModelState);
-
-			// Check for model state errors after applying the patch
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
+				villa.Name = villaUpdateDTO.Name;
 			}
 
-			// Map the patched VillaDTO back to the Villa model
-			villa.Name = villaDTO.Name;
-			villa.Amenity = villaDTO.Amenity;
-			villa.Sqft = villaDTO.Sqft;
-			villa.Occupancy = villaDTO.Occupancy;
-			villa.Details = villaDTO.Details;
-			villa.Rate = villaDTO.Rate;
-			villa.ImageUrl = villaDTO.ImageUrl;
+			if (!string.IsNullOrWhiteSpace(villaUpdateDTO.Details))
+			{
+				villa.Details = villaUpdateDTO.Details;
+			}
 
-			// Update the villa in the database
+			if (villaUpdateDTO.Rate.HasValue)
+			{
+				villa.Rate = villaUpdateDTO.Rate.Value;
+			}
+
+			if (villaUpdateDTO.Sqft.HasValue)
+			{
+				villa.Sqft = villaUpdateDTO.Sqft.Value;
+			}
+
+			if (villaUpdateDTO.Occupancy.HasValue)
+			{
+				villa.Occupancy = villaUpdateDTO.Occupancy.Value;
+			}
+
+			if (!string.IsNullOrWhiteSpace(villaUpdateDTO.ImageUrl))
+			{
+				villa.ImageUrl = villaUpdateDTO.ImageUrl;
+			}
+
+			if (!string.IsNullOrWhiteSpace(villaUpdateDTO.Amenity))
+			{
+				villa.Amenity = villaUpdateDTO.Amenity;
+			}
+
 			_db.Villas.Update(villa);
 			_db.SaveChanges();
 
-			return NoContent(); // Return 204 when the patch is successfully applied
+			return NoContent();
 		}
+
 
 	}
 }
